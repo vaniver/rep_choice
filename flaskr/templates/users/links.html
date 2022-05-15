@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block up_user %}Your Representative{% endblock %}</h1>
+  {% if curr_rep %}
+    <h1>{{ curr_rep['display_name'] }} : {{ curr_rep['voice'] }}</h1>
+    <div class="contact_details">{{ curr_rep['contact_down'] }}</div>
+    <div class="about">{{ curr_rep['bio'] }}</div>
+  {% else %}
+    You don't have a representative yet! <a class="action" href="{{ url_for('users.choose') }}">Choose a Representative</a>
+  {% endif %}
+{% endblock %}
+
+{% if rep_list %}
+  {% block content %}
+    <h1>{% block down_list %}People you Represent{% endblock %}</h1>
+    {% for user in rep_list %}
+      <article class="user">
+        <header>
+          <div>
+            <h1>{{ user['display_name'] }} : {{ user['voice'] }}</h1>
+            <div class="contact_details">{{ user['contact_up'] }}</div>
+            <div class="about">{{ user['bio'] }}</div>
+          </div>
+        </header>
+        </article>
+      {% if not loop.last %}
+        <hr>
+      {% endif %}
+    {% endfor %}
+  {% endblock %}
+{% endif %}

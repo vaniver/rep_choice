@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ curr_desc['display_name'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="display_name">Display Name (visible to everyone!)</label>
+    <input name="display_name" id="display_name"
+      value="{{ request.form['display_name'] or curr_desc['display_name'] }}" required>
+    <label for="bio">Bio (visible to everyone!)</label>
+    <textarea name="bio" id="bio">{{ request.form['bio'] or curr_desc['bio'] }}</textarea>
+    <label for="contact_up">Contact Details (visible to your representative only)</label>
+    <textarea name="contact_up" id="contact_up">{{ request.form['contact_up'] or curr_desc['contact_up'] }}</textarea>
+    <label for="contact_down">Contact Details (visible to people you represent only)</label>
+    <textarea name="contact_down" id="contact_down">{{ request.form['contact_down'] or curr_desc['contact_down'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+  <hr>
+{% endblock %}

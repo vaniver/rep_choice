@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Reallocate Reps{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  You need to be a representative or admin to run the reallocation script.
+  <h2>Last run: {{last_time}}</h2>
+  There have been {{ num_choices }} choice(s) made since the rep_allocation was last run, and it took {{time_took}} seconds to run.
+  <hr>
+{% endblock %} 

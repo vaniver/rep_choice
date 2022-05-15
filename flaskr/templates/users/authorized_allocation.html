@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Reallocate Reps{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <h2>Last run: {{last_time}}</h2>
+  There have been {{ num_choices }} choice(s) made since the rep_allocation was last run, and it took {{time_took}} seconds to run.
+  <hr>
+  <form method="post">
+  
+    <label for="allocate">Type 'allocate' in the box to allocate.</label>
+    <input name="allocate" id="allocate" value="{{request.form['allocate']}}" required>
+    <input type="submit" value="Reallocate">
+  </form>
+  <hr>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Ranked Choice{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="up1">First Choice</label>
+    <input name="up1" id="up1" value="{{ request.form['up1'] or curr_choice['up_id_1'] }}">
+    <label for="up2">Second Choice</label>
+    <input name="up2" id="up2" value="{{ request.form['up2'] or curr_choice['up_id_2'] }}">
+    <label for="up3">Third Choice</label>
+    <input name="up3" id="up3" value="{{ request.form['up3'] or curr_choice['up_id_3'] }}">
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

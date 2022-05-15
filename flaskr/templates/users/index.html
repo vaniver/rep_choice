@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Choose Rep{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('users.choose') }}">Choose Rep</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for user in user_list %}
+    <article class="user">
+      <header>
+        <div>
+          <h1>{{ user['display_name'] }} : {{ user['voice'] }}</h1>
+          <div class="about">{{ user['bio'] }}</div>
+        </div>
+        {% if g.user['id'] == user['id'] %}
+          <a class="action" href="{{ url_for('users.update', id=user['id']) }}">Edit Name and Bio</a>
+        {% endif %}
+      </header>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
